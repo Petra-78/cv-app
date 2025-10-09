@@ -2,7 +2,7 @@ import { useState } from "react";
 import downArrow from "../assets/down-arrow.png";
 
 function EducationForm({ educationData, setEducationData }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [educationForm, setEducationForm] = useState(educationData);
 
   const handleSubmit = (e) => {
