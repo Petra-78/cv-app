@@ -1,25 +1,23 @@
 import { useState } from "react";
 import downArrow from "../assets/down-arrow.png";
+import App from "../App";
 
-export default function PersonalDataForm() {
-  const [savedData, setSavedData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
-  const [formData, setFormData] = useState(savedData);
-
+export default function PersonalDataForm({
+  personalData,
+  setPersonalData,
+  personalForm,
+  setPersonalForm,
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSavedData({ ...formData });
+    setPersonalData({ ...personalForm });
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    setFormData({ ...savedData });
+    setPersonalForm({ ...personalData });
   };
 
   return (
@@ -40,9 +38,9 @@ export default function PersonalDataForm() {
               type="text"
               id="fullName"
               name="fullName"
-              value={formData.fullName}
+              value={personalForm.fullName}
               onChange={(e) =>
-                setFormData({ ...formData, fullName: e.target.value })
+                setPersonalForm({ ...personalForm, fullName: e.target.value })
               }
             />
 
@@ -51,9 +49,9 @@ export default function PersonalDataForm() {
               type="email"
               name="email"
               id="email"
-              value={formData.email}
+              value={personalForm.email}
               onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
+                setPersonalForm({ ...personalForm, email: e.target.value })
               }
             />
 
@@ -62,9 +60,9 @@ export default function PersonalDataForm() {
               type="tel"
               name="phone"
               id="phone"
-              value={formData.phone}
+              value={personalForm.phone}
               onChange={(e) =>
-                setFormData({ ...formData, phone: e.target.value })
+                setPersonalForm({ ...personalForm, phone: e.target.value })
               }
             />
 
@@ -73,9 +71,9 @@ export default function PersonalDataForm() {
               type="text"
               name="address"
               id="address"
-              value={formData.address}
+              value={personalForm.address}
               onChange={(e) =>
-                setFormData({ ...formData, address: e.target.value })
+                setPersonalForm({ ...personalForm, address: e.target.value })
               }
             />
 
