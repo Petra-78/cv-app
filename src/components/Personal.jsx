@@ -2,14 +2,25 @@ import { useState } from "react";
 import downArrow from "../assets/down-arrow.png";
 
 export default function PersonalDataForm() {
-  const [formData, setFormData] = useState({
+  const [savedData, setSavedData] = useState({
     fullName: "",
     email: "",
     phone: "",
     address: "",
   });
+  const [formData, setFormData] = useState(savedData);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSavedData({ ...formData });
+  };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setFormData({ ...savedData });
+  };
 
   return (
     <div className="dropdown">
@@ -18,7 +29,7 @@ export default function PersonalDataForm() {
         <img
           className={`arrow ${isOpen ? "rotated" : ""}`}
           src={downArrow}
-          alt=""
+          alt="down arrow"
         />
       </div>
       {isOpen && (
@@ -69,10 +80,20 @@ export default function PersonalDataForm() {
             />
 
             <div className="buttons">
-              <button type="submit" onClick={() => setIsOpen(!isOpen)}>
+              <button
+                onClick={(e) => {
+                  setIsOpen(!isOpen);
+                  handleCancel(e);
+                }}
+              >
                 Cancel
               </button>
-              <button type="submit" onClick={() => setIsOpen(!isOpen)}>
+              <button
+                onClick={(e) => {
+                  setIsOpen(!isOpen);
+                  handleSubmit(e);
+                }}
+              >
                 Save
               </button>
             </div>
