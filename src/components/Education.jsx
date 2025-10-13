@@ -2,7 +2,7 @@ import { useState } from "react";
 import App from "../App";
 import downArrow from "../assets/down-arrow.png";
 
-function EducationForm({ education, setEducations }) {
+function EducationForm({ education, setEducations, handleDelete }) {
   const [isOpen, setIsOpen] = useState(true);
   const [savedData, setSavedData] = useState(education);
 
@@ -24,6 +24,7 @@ function EducationForm({ education, setEducations }) {
     <>
       <div onClick={() => setIsOpen(!isOpen)}>
         <h3>{education.schoolName || "New education"}</h3>
+        <button onClick={handleDelete}>Delete</button>
         <img
           className={`arrow ${isOpen ? "rotated" : ""}`}
           src={downArrow}
@@ -118,6 +119,11 @@ export default function EducationDropdown({ educations, setEducations }) {
     setEducations(newList);
   };
 
+  const handleDelete = (id) => {
+    const newList = educations.filter((edu) => edu.id !== id);
+    setEducations(newList);
+  };
+
   return (
     <div>
       <div className="dropdownHeader" onClick={() => setIsOpen(!isOpen)}>
@@ -137,6 +143,7 @@ export default function EducationDropdown({ educations, setEducations }) {
               setEducations={(updatedEdu) => {
                 updateEducation(edu.id, updatedEdu);
               }}
+              handleDelete={() => handleDelete(edu.id)}
             />
           ))}
 
