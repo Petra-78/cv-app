@@ -1,20 +1,19 @@
+import "../styles/Education.css";
+
 export default function EducationDisplay({ educations }) {
   return (
-    <div>
+    <div className="educations">
+      <h2 className="sectionTitle">Education</h2>
       {educations.map((edu) => (
         <div key={edu.id}>
           <p>
-            <strong>School:</strong> {edu.schoolName}
+            {edu.startDate} - {edu.endDate}
           </p>
           <p>
-            <strong>Degree:</strong> {edu.degree}
+            <strong>{edu.schoolName}</strong>
           </p>
-          <p>
-            <strong>Years:</strong> {edu.startDate} - {edu.endDate}
-          </p>
-          <p>
-            <strong>Location:</strong> {edu.location}
-          </p>
+          <p>{edu.location}</p>
+          <p>{edu.degree}</p>
         </div>
       ))}
     </div>

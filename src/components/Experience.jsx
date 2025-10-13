@@ -22,7 +22,7 @@ function ExperienceForm({ experience, setExperiences, handleDelete }) {
 
   return (
     <>
-      <div onClick={() => setIsOpen(!isOpen)}>
+      <div className="innerDropdown" onClick={() => setIsOpen(!isOpen)}>
         <h3>{experience.companyName || "New experience"}</h3>
         <button onClick={handleDelete}>Delete</button>
         <img
@@ -127,7 +127,7 @@ export default function EducationDropdown({ experiences, setExperiences }) {
   };
 
   return (
-    <div>
+    <div className="dropdown">
       <div className="dropdownHeader" onClick={() => setIsOpen(!isOpen)}>
         <h2>Experiences</h2>
         <img

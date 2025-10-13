@@ -1,8 +1,14 @@
 import { useState } from "react";
 import PersonalDataForm from "./components/Personal.jsx";
 import PersonalDataDisplay from "./components/PersonalDisplay.jsx";
-import "./App.css";
 import EducationDropdown from "./components/Education.jsx";
+import EducationDisplay from "./components/EducationDisplay.jsx";
+import ExperienceDropdown from "./components/Experience.jsx";
+import Skills from "./components/Skills.jsx";
+import SkillsDisplay from "./components/SkillsDisplay.jsx";
+import "./App.css";
+
+import ExperienceDisplay from "./components/ExperienceDisplay.jsx";
 
 function App() {
   const [personalData, setPersonalData] = useState({
@@ -13,25 +19,38 @@ function App() {
   });
   const [personalForm, setPersonalForm] = useState(personalData);
 
-  const [educationData, setEducationData] = useState({
-    schoolName: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-  });
-  const [educationForm, setEducationForm] = useState(educationData);
+  const [educations, setEducations] = useState([]);
+  const [experiences, setExperiences] = useState([]);
+
+  const [skills, setSkills] = useState([]);
+
   return (
-    <>
-      <PersonalDataForm
-        personalData={personalData}
-        setPersonalData={setPersonalData}
-        personalForm={personalForm}
-        setPersonalForm={setPersonalForm}
-      />
-      <PersonalDataDisplay personalForm={personalForm} />
-      <EducationDropdown />
-    </>
+    <div className="main">
+      <div className="forms">
+        <PersonalDataForm
+          personalData={personalData}
+          setPersonalData={setPersonalData}
+          personalForm={personalForm}
+          setPersonalForm={setPersonalForm}
+        />
+
+        <EducationDropdown
+          educations={educations}
+          setEducations={setEducations}
+        />
+        <ExperienceDropdown
+          experiences={experiences}
+          setExperiences={setExperiences}
+        />
+        <Skills skills={skills} setSkills={setSkills} />
+      </div>
+      <div className="preview">
+        <PersonalDataDisplay personalForm={personalForm} />
+        <SkillsDisplay skills={skills} />
+        <EducationDisplay educations={educations} />
+        <ExperienceDisplay experiences={experiences} />
+      </div>
+    </div>
   );
 }
 

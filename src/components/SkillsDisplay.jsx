@@ -1,14 +1,14 @@
-import App from "../App";
+import "../styles/Skills.css";
 
 export default function SkillsDisplay({ skills }) {
   return (
-    <>
-      <h1>Skills:</h1>
+    <div className="skills">
+      <h2 className="sectionTitle">Skills</h2>
       <ul>
         {skills.map((skill) => {
           return <li>{skill.skill}</li>;
         })}
       </ul>
-    </>
+    </div>
   );
 }

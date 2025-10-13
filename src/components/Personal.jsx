@@ -1,6 +1,5 @@
 import { useState } from "react";
 import downArrow from "../assets/down-arrow.png";
-import App from "../App";
 
 export default function PersonalDataForm({
   personalData,
@@ -22,7 +21,7 @@ export default function PersonalDataForm({
 
   return (
     <div className="dropdown">
-      <div onClick={() => setIsOpen(!isOpen)}>
+      <div className="dropdownHeader" onClick={() => setIsOpen(!isOpen)}>
         <h2>Personal details</h2>
         <img
           className={`arrow ${isOpen ? "rotated" : ""}`}
@@ -31,7 +30,7 @@ export default function PersonalDataForm({
         />
       </div>
       {isOpen && (
-        <div>
+        <div className="formContainer">
           <form action="get">
             <label htmlFor="fullName">Full Name</label>
             <input
@@ -74,6 +73,20 @@ export default function PersonalDataForm({
               value={personalForm.address}
               onChange={(e) =>
                 setPersonalForm({ ...personalForm, address: e.target.value })
+              }
+            />
+
+            <label htmlFor="introduction">Introduction</label>
+            <textarea
+              type="text"
+              name="introduction"
+              id="addintroductionress"
+              value={personalForm.introduction}
+              onChange={(e) =>
+                setPersonalForm({
+                  ...personalForm,
+                  introduction: e.target.value,
+                })
               }
             />
 
