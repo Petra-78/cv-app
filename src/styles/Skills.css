@@ -1,0 +1,4 @@
+.skills {
+  display: grid;
+  grid-column: 1 / 2;
+}
