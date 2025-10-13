@@ -1,117 +1,99 @@
 import { useState } from "react";
+import App from "../App";
 import downArrow from "../assets/down-arrow.png";
 
-function EducationForm({ educationData, setEducationData }) {
+function EducationForm({ education, setEducations }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [educationForm, setEducationForm] = useState(educationData);
+  const [savedData, setSavedData] = useState(education);
 
-  const handleSubmit = (e) => {
+  const handleSave = (e) => {
     e.preventDefault();
-    setEducationData({ ...educationForm });
-    setIsOpen(false);
+    setIsOpen(!isOpen);
+    setSavedData(education);
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    setEducationForm({ ...educationData });
-    setIsOpen(false);
+    setIsOpen(!isOpen);
+    setEducations(savedData);
   };
 
   return (
-    <div className="dropdown">
+    <>
       <div onClick={() => setIsOpen(!isOpen)}>
-        <h3>{educationForm.schoolName || "New education"}</h3>
+        <h3>{education.schoolName || "New education"}</h3>
         <img
           className={`arrow ${isOpen ? "rotated" : ""}`}
           src={downArrow}
           alt="down arrow"
         />
       </div>
+      <form action="get">
+        <label htmlFor="schoolName">School Name</label>
+        <input
+          type="text"
+          id="schoolName"
+          name="schoolName"
+          value={education.schoolName}
+          onChange={(e) =>
+            setEducations({ ...education, schoolName: e.target.value })
+          }
+        />
 
-      {isOpen && (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="schoolName">School name</label>
-          <input
-            type="text"
-            id="schoolName"
-            value={educationForm.schoolName}
-            onChange={(e) =>
-              setEducationForm({
-                ...educationForm,
-                schoolName: e.target.value,
-              })
-            }
-          />
+        <label htmlFor="degree">Degree</label>
+        <input
+          type="text"
+          name="degree"
+          id="degree"
+          value={education.degree}
+          onChange={(e) =>
+            setEducations({ ...education, degree: e.target.value })
+          }
+        />
 
-          <label htmlFor="degree">Degree</label>
-          <input
-            type="text"
-            id="degree"
-            value={educationForm.degree}
-            onChange={(e) =>
-              setEducationForm({
-                ...educationForm,
-                degree: e.target.value,
-              })
-            }
-          />
+        <label htmlFor="startDate">Start</label>
+        <input
+          type="number"
+          name="startDate"
+          id="startDate"
+          value={education.startDate}
+          onChange={(e) =>
+            setEducations({ ...education, startDate: e.target.value })
+          }
+        />
 
-          <div className="dates">
-            <label htmlFor="startDate">Start date</label>
-            <input
-              type="number"
-              id="startDate"
-              value={educationForm.startDate}
-              onChange={(e) =>
-                setEducationForm({
-                  ...educationForm,
-                  startDate: e.target.value,
-                })
-              }
-            />
+        <label htmlFor="endDate">End</label>
+        <input
+          type="number"
+          name="endDate"
+          id="endDate"
+          value={education.endDate}
+          onChange={(e) =>
+            setEducations({ ...education, endDate: e.target.value })
+          }
+        />
+        <label htmlFor="location">location</label>
+        <input
+          type="text"
+          name="location"
+          id="location"
+          value={education.location}
+          onChange={(e) =>
+            setEducations({ ...education, location: e.target.value })
+          }
+        />
 
-            <label htmlFor="endDate">End date</label>
-            <input
-              type="number"
-              id="endDate"
-              value={educationForm.endDate}
-              onChange={(e) =>
-                setEducationForm({
-                  ...educationForm,
-                  endDate: e.target.value,
-                })
-              }
-            />
-          </div>
-
-          <label htmlFor="location">Location</label>
-          <input
-            type="text"
-            id="location"
-            value={educationForm.location}
-            onChange={(e) =>
-              setEducationForm({
-                ...educationForm,
-                location: e.target.value,
-              })
-            }
-          />
-
-          <div className="buttons">
-            <button type="button" onClick={handleCancel}>
-              Cancel
-            </button>
-            <button type="submit">Save</button>
-          </div>
-        </form>
-      )}
-    </div>
+        <div className="buttons">
+          <button onClick={(e) => handleCancel(e)}> Cancel</button>
+          <button onClick={(e) => handleSave(e)}>Save</button>
+        </div>
+      </form>
+    </>
   );
 }
 
-export default function EducationDropdown() {
+export default function EducationDropdown({ educations, setEducations }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [educations, setEducations] = useState([]);
 
   const handleAddEducation = () => {
     setEducations([
@@ -127,35 +109,33 @@ export default function EducationDropdown() {
     ]);
   };
 
-  const handleUpdateEducation = (id, updatedEducation) => {
-    const updatedList = educations.map((edu) =>
-      edu.id === id ? updatedEducation : edu
-    );
-    setEducations(updatedList);
+  const updateEducation = (id, updatedEdu) => {
+    const newList = educations.map((edu) => (edu.id === id ? updatedEdu : edu));
+    setEducations(newList);
   };
 
   return (
-    <div className="dropdown">
-      <div onClick={() => setIsOpen(!isOpen)}>
-        <h2>Education</h2>
+    <div>
+      <div className="dropdownHeader" onClick={() => setIsOpen(!isOpen)}>
+        <h2>Educations</h2>
         <img
           className={`arrow ${isOpen ? "rotated" : ""}`}
           src={downArrow}
           alt="down arrow"
         />
       </div>
-
       {isOpen && (
         <div>
           {educations.map((edu) => (
             <EducationForm
               key={edu.id}
-              educationData={edu}
-              setEducationData={(updatedEdu) =>
-                handleUpdateEducation(edu.id, updatedEdu)
-              }
+              education={edu}
+              setEducations={(updatedEdu) => {
+                updateEducation(edu.id, updatedEdu);
+              }}
             />
           ))}
+
           <button onClick={handleAddEducation}>+ Add education</button>
         </div>
       )}
