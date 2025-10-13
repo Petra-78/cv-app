@@ -8,14 +8,16 @@ function EducationForm({ education, setEducations }) {
 
   const handleSave = (e) => {
     e.preventDefault();
-    setIsOpen(!isOpen);
+
     setSavedData(education);
+    setIsOpen(false);
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    setIsOpen(!isOpen);
+
     setEducations(savedData);
+    setIsOpen(false);
   };
 
   return (
@@ -28,66 +30,68 @@ function EducationForm({ education, setEducations }) {
           alt="down arrow"
         />
       </div>
-      <form action="get">
-        <label htmlFor="schoolName">School Name</label>
-        <input
-          type="text"
-          id="schoolName"
-          name="schoolName"
-          value={education.schoolName}
-          onChange={(e) =>
-            setEducations({ ...education, schoolName: e.target.value })
-          }
-        />
+      {isOpen && (
+        <form action="get">
+          <label htmlFor="schoolName">School Name</label>
+          <input
+            type="text"
+            id="schoolName"
+            name="schoolName"
+            value={education.schoolName}
+            onChange={(e) =>
+              setEducations({ ...education, schoolName: e.target.value })
+            }
+          />
 
-        <label htmlFor="degree">Degree</label>
-        <input
-          type="text"
-          name="degree"
-          id="degree"
-          value={education.degree}
-          onChange={(e) =>
-            setEducations({ ...education, degree: e.target.value })
-          }
-        />
+          <label htmlFor="degree">Degree</label>
+          <input
+            type="text"
+            name="degree"
+            id="degree"
+            value={education.degree}
+            onChange={(e) =>
+              setEducations({ ...education, degree: e.target.value })
+            }
+          />
 
-        <label htmlFor="startDate">Start</label>
-        <input
-          type="number"
-          name="startDate"
-          id="startDate"
-          value={education.startDate}
-          onChange={(e) =>
-            setEducations({ ...education, startDate: e.target.value })
-          }
-        />
+          <label htmlFor="startDate">Start</label>
+          <input
+            type="number"
+            name="startDate"
+            id="startDate"
+            value={education.startDate}
+            onChange={(e) =>
+              setEducations({ ...education, startDate: e.target.value })
+            }
+          />
 
-        <label htmlFor="endDate">End</label>
-        <input
-          type="number"
-          name="endDate"
-          id="endDate"
-          value={education.endDate}
-          onChange={(e) =>
-            setEducations({ ...education, endDate: e.target.value })
-          }
-        />
-        <label htmlFor="location">location</label>
-        <input
-          type="text"
-          name="location"
-          id="location"
-          value={education.location}
-          onChange={(e) =>
-            setEducations({ ...education, location: e.target.value })
-          }
-        />
+          <label htmlFor="endDate">End</label>
+          <input
+            type="number"
+            name="endDate"
+            id="endDate"
+            value={education.endDate}
+            onChange={(e) =>
+              setEducations({ ...education, endDate: e.target.value })
+            }
+          />
+          <label htmlFor="location">location</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            value={education.location}
+            onChange={(e) =>
+              setEducations({ ...education, location: e.target.value })
+            }
+          />
 
-        <div className="buttons">
-          <button onClick={(e) => handleCancel(e)}> Cancel</button>
-          <button onClick={(e) => handleSave(e)}>Save</button>
-        </div>
-      </form>
+          <div className="buttons">
+            <button onClick={(e) => handleCancel(e)}> Cancel</button>
+            <button onClick={(e) => handleSave(e)}>Save</button>
+          </div>
+        </form>
+      )}
     </>
   );
 }
