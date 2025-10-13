@@ -1,23 +1,20 @@
 #root {
   max-width: 1400px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-div{
+body,
+#root {
   display: flex;
-  box-sizing: border-box;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
-.dropdown > div {
-  justify-content: space-between;
-}
-
-.dropdown{
-  flex-direction: column;
+div {
+  box-sizing: border-box;
 }
 
 .logo {
@@ -56,22 +53,107 @@ div{
   color: #888;
 }
 
-form{
-  display: flex;
-  flex-direction: column;
+.main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100%;
+  min-width: 80vw;
+  gap: 50px;
+  justify-content: space-around;
+}
+
+.preview {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(3, 1fr);
+  height: 29.7cm;
+  width: 21cm;
+  box-shadow: black 5px 5px 5px 5px;
+}
+
+.preview > div {
+  height: 100%;
   align-items: start;
 }
 
-img{
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 100%;
+  background-color: rgb(187, 223, 208);
+  border-radius: 20px;
+  padding: 0px 20px 20px 20px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dropdownHeader,
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  justify-content: start;
+  align-items: start;
+  gap: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 10px;
+  gap: 5px;
+}
+
+label {
+  color: black;
+}
+
+input,
+textarea {
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 5px rgb(119, 179, 154);
+  width: 100%;
+}
+
+.buttons {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: end;
+  gap: 10px;
+}
+
+img {
   height: 30px;
   width: 30px;
 }
 
-.arrow{
+.arrow {
   transition: transform 0.5s ease;
-  
 }
 
-.arrow.rotated{
+.arrow.rotated {
   transform: rotate(180deg);
+}
+
+.innerDropdown {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
