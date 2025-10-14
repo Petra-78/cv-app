@@ -7,7 +7,7 @@ export default function PersonalDataForm({
   personalForm,
   setPersonalForm,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
