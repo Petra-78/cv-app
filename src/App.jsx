@@ -6,6 +6,7 @@ import EducationDisplay from "./components/EducationDisplay.jsx";
 import ExperienceDropdown from "./components/Experience.jsx";
 import Skills from "./components/Skills.jsx";
 import SkillsDisplay from "./components/SkillsDisplay.jsx";
+import PrevievButtons from "./components/PreviewButtons.jsx";
 import "./App.css";
 
 import ExperienceDisplay from "./components/ExperienceDisplay.jsx";
@@ -26,6 +27,14 @@ function App() {
 
   return (
     <div className="main">
+      <div className="previewButtons">
+        <PrevievButtons
+          setPersonalForm={setPersonalForm}
+          setEducations={setEducations}
+          setExperiences={setExperiences}
+          setSkills={setSkills}
+        />
+      </div>
       <div className="forms">
         <PersonalDataForm
           personalData={personalData}
