@@ -1,5 +1,6 @@
 import { useState } from "react";
-import App from "../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import downArrow from "../assets/down-arrow.png";
 
 function EducationForm({ education, setEducations, handleDelete }) {
@@ -24,12 +25,16 @@ function EducationForm({ education, setEducations, handleDelete }) {
     <>
       <div className="innerDropdown" onClick={() => setIsOpen(!isOpen)}>
         <h3>{education.schoolName || "New education"}</h3>
-        <button onClick={handleDelete}>Delete</button>
-        <img
-          className={`arrow ${isOpen ? "rotated" : ""}`}
-          src={downArrow}
-          alt="down arrow"
-        />
+        <div>
+          <button onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+          <img
+            className={`arrow ${isOpen ? "rotated" : ""}`}
+            src={downArrow}
+            alt="down arrow"
+          />
+        </div>
       </div>
       {isOpen && (
         <form action="get">
@@ -57,7 +62,7 @@ function EducationForm({ education, setEducations, handleDelete }) {
 
           <label htmlFor="startDate">Start</label>
           <input
-            type="number"
+            type="text"
             name="startDate"
             id="startDate"
             value={education.startDate}
@@ -68,7 +73,7 @@ function EducationForm({ education, setEducations, handleDelete }) {
 
           <label htmlFor="endDate">End</label>
           <input
-            type="number"
+            type="text"
             name="endDate"
             id="endDate"
             value={education.endDate}

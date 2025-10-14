@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import downArrow from "../assets/down-arrow.png";
 
 export default function Skills({ skills, setSkills }) {
@@ -32,14 +34,16 @@ export default function Skills({ skills, setSkills }) {
       {isOpen && (
         <div className="formContainer">
           {skills.map((skill) => (
-            <div key={skill.id} className="skill-item">
+            <div key={skill.id} className="skillItem">
               <input
                 type="text"
                 placeholder="Skill"
                 value={skill.skill}
                 onChange={(e) => updateSkill(skill.id, e.target.value)}
               />
-              <button onClick={() => deleteSkill(skill.id)}>Delete</button>
+              <button onClick={() => deleteSkill(skill.id)}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
             </div>
           ))}
           <button onClick={addSkill}>+ Add skills</button>
