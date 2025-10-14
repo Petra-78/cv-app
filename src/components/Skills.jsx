@@ -30,7 +30,7 @@ export default function Skills({ skills, setSkills }) {
       </div>
 
       {isOpen && (
-        <div>
+        <div className="formContainer">
           {skills.map((skill) => (
             <div key={skill.id} className="skill-item">
               <input

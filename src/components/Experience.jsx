@@ -137,7 +137,7 @@ export default function EducationDropdown({ experiences, setExperiences }) {
         />
       </div>
       {isOpen && (
-        <div>
+        <div className="formContainer">
           {experiences.map((exp) => (
             <ExperienceForm
               key={exp.id}
