@@ -7,17 +7,13 @@ export default function ExperienceDisplay({ experiences }) {
       {experiences.map((exp) => (
         <div key={exp.id}>
           <p>
-            <strong>Company:</strong> {exp.companyName}
+            <strong>{exp.companyName}</strong>
           </p>
+          <p>{exp.position}</p>
           <p>
-            <strong>Position:</strong> {exp.position}
+            {exp.startDate} - {exp.endDate}
           </p>
-          <p>
-            <strong>Years:</strong> {exp.startDate} - {exp.endDate}
-          </p>
-          <p>
-            <strong>Describtion:</strong> {exp.describtion}
-          </p>
+          <p>{exp.describtion}</p>
         </div>
       ))}
     </div>
