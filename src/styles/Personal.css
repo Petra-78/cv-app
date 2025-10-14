@@ -1,16 +1,25 @@
 .personalDetails {
   display: grid;
-
   background-color: rgb(0, 75, 34);
   color: aliceblue;
-  padding: 30px;
+  align-items: start;
+  justify-content: start;
 }
 
 .introduction {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  grid-column: 2/3;
-  grid-row: 1/2;
+  justify-content: start;
   align-self: center;
+  width: 100%;
+}
+
+.introduction > p {
+  text-align: left;
+}
+
+.personalDetails > h2 {
+  text-align: left;
+  width: 100%;
 }

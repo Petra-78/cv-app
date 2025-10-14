@@ -1,11 +1,15 @@
 .educations {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   grid-column: 2 / 3;
   grid-row: 2/3;
+  gap: 20px;
 }
 
 .educations > div {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
   text-align: left;
+  gap: 10px 50px;
 }
