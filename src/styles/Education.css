@@ -12,4 +12,7 @@
   grid-template-columns: 1fr 2fr;
   text-align: left;
   gap: 10px 50px;
+  border-bottom: 1px solid var(--dark-green);
+  padding: 10px;
+  width: 100%;
 }
