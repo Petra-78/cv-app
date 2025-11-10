@@ -11,4 +11,4 @@ A simple and responsive React-based CV builder that lets you input your personal
 
 ## Live preview
 
-https://bright-haupia-3d63d7.netlify.app/
+https://cv-app-petra-78.netlify.app/
